@@ -1,80 +1,48 @@
-# dangi = int(input())
-# arr = [[0 for i in range(dangi+1)] for j in range(dangi + 1)]
-# '''
-# 7
-# 0110100
-# 0110101
-# 1110101
-# 0000111
-# 0100000
-# 0111110
-# 0111000
-# '''
-#
-# for i in range(dangi):
-#     t = input().split()
-#     print(t)
-#     for j in range(dangi):
-#         arr[i][j] = int(t)
-#
-# void dfs(int a, int b, int c) {
-#     A[a][b] = c;
-#     if( safe(a+1, b) && A[a+1][b] == 1 )
-#     dfs(a+1, b, c);
-#     if( safe(a-1, b) && A[a-1][b] == 1 )
-#     dfs(a-1, b, c);
-#     if( safe(a, b+1) && A[a][b+1] == 1 )
-#     dfs(a, b+1, c);
-#     if( safe(a, b-1) && A[a][b-1] == 1 )
-# dfs(a, b-1, c); }
-#
-# 출처: https://12bme.tistory.com/122 [길은 가면, 뒤에 있다.]
+'''
+백준 10815번 숫자 카드
 
+문제
+숫자 카드는 정수 하나가 적혀져 있는 카드이다.
+상근이는 숫자 카드 N개를 가지고 있다.
+정수 M개가 주어졌을 때, 이 수가 적혀있는 숫자 카드를 상근이가 가지고 있는지 아닌지를 구하는 프로그램을 작성하시오.
+
+입력
+첫째 줄에 상근이가 가지고 있는 숫자 카드의 개수 N(1 ≤ N ≤ 500,000)이 주어진다.
+둘째 줄에는 숫자 카드에 적혀있는 정수가 주어진다. 숫자 카드에 적혀있는 수는 -10,000,000보다 크거나 같고, 10,000,000보다 작거나 같다. 두 숫자 카드에 같은 수가 적혀있는 경우는 없다.
+
+셋째 줄에는 M(1 ≤ M ≤ 500,000)이 주어진다.
+넷째 줄에는 상근이가 가지고 있는 숫자 카드인지 아닌지를 구해야 할 M개의 정수가 주어지며, 이 수는 공백으로 구분되어져 있다.
+이 수도 -10,000,000보다 크거나 같고, 10,000,000보다 작거나 같다
+
+출력
+첫째 줄에 입력으로 주어진 M개의 수에 대해서, 각 수가 적힌 숫자 카드를 상근이가 가지고 있으면 1을, 아니면 0을 공백으로 구분해 출력한다.
+
+예제 입력 1
+5
+6 3 2 10 -10
+8
+10 9 -5 2 3 4 5 -10
+예제 출력 1
+1 0 0 1 1 0 0 1
+'''
 from sys import stdin
-n = int(input())
-# 데이터 저장용 공간 matrix
-matrix = [[0]*n for _ in range(n)]
-# 방문 내역 저장용 visited
-visited = [[0]*n for _ in range(n)]
+n = stdin.readline()
 
-# matrix에 아파트 유무 0과 1 저장
-for i in range(n):
-    line = stdin.readline().strip() # input() 과 똑같은거같음
-    for j, b in enumerate(line):
-        matrix[i][j] = int(b)
+#n = int(input()) 이게 속도 더 느림
+n_num = set(map(int,stdin.readline().split()))
+m = int(stdin.readline())
+m_num = tuple(map(int,stdin.readline().split()))
+#re =[0] * m
 
-# 방향 확인용 좌표 dx와 dy
-# 중앙을 기준으로 좌/우/위/아래
-dx = [-1, 1, 0, 0]
-dy = [0, 0, 1, -1]
-
-# DFS 함수 정의
-def dfs(x, y, c):
-    visited[x][y] = 1   # 방문 여부 표시
-    global nums            # 아파트 단지 수를 세기위한 변수
-    # 아파트가 있으면 숫자를 세어줍니다.
-    if matrix[x][y] == 1:
-        #matrix[x][y] = c # 아파트 단지별 숫자 표시용
-        nums += 1
-    # 해당 위치에서 좌/우/위/아래 방향의 좌표를 확인해서 dfs 적용
-    for i in range(4):
-        nx = x + dx[i]
-        ny = y + dy[i]
-        if 0 <= nx < n and 0 <= ny < n:
-            if visited[nx][ny] == 0 and matrix[nx][ny] == 1:
-                dfs(nx,ny, c)
-
-cnt = 1 # 아파트 단지 세기 위한
-numlist = [] # 아파트 단지별 숫자
-nums=0 # 아파트 수
-for a in range(n):
-    for b in range(n):
-        if matrix[a][b] == 1 and visited[a][b] == 0:
-            dfs(a,b,cnt)
-            numlist.append(nums)
-            nums = 0
-#            cnt += 1 # 아파트 단지 별 표시용
-
-print(len(numlist))
-for n in sorted(numlist):
-    print(n)
+# for i in n_num:
+#     #print(i) # 똑같은 숫자만 반환
+#     for t,j in enumerate(m_num):
+#         if j == i:
+#             re[t] = 1
+#
+# print(" ".join(map(str, re)))
+for i in range(len(m_num)):
+    if m_num[i] in n_num:
+        print(1,end=' ') # 순서대로 출력할때는 리스트로 빼는거보다 end를 ' ' 이런식으로해서 뽑는게 시간초과안
+    else:
+        print(0,end=' ')
