@@ -30,7 +30,7 @@ try:
        if test == '':
            break
        else:
-           print(test)
+           print(test,end="")
 except:
     exit()
 
