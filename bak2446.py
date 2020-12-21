@@ -33,4 +33,4 @@ for i in range(n-1,0,-1):
     if i == 1:
         print(' '*((n-1)+1-i)+i*'*'+' '*(n+1-i))
 for j in range(1,n):
-    print(' ' * (n - j) + j * '*' + '*' + j * '*' + ' ' * (n - j))
+    print(' ' * (n - j) + j * '*' + '*' + j * '*')
