@@ -1,6 +1,6 @@
 '''
 가장 긴 증가하는 부분 수열 분류
-
+lis 문제
 문제
 수열 A가 주어졌을 때, 가장 긴 증가하는 부분 수열을 구하는 프로그램을 작성하시오.
 
@@ -34,7 +34,6 @@ for i in range(1,n): # n전까지니까
     # 1,2,3,4,5
     for j in range(i): # i보다 작은
         if arr[j] < arr[i]:
-            print(result)
-            print(result[i], result[j] +1)
             result[i] = max(result[i],result[j] +1)
 print(max(result))
+print(result)
