@@ -20,4 +20,4 @@ python의 기본 print( ) 를 이용해 출력하면 문장을 출력한 후 마
 ** 주의 : 본 화면에서 복사하여 붙여넣기하면 제대로 되지 않을 수 있으니 직접 소스코드를 작성해 넣어야한다.
 '''
 
-print('Hello','World',sep='\n')
+print('Hello','``World',sep='\n')
