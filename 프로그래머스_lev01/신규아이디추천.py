@@ -24,12 +24,11 @@ def solution(new_id):
 
     # 2단계 new_id에서 알파벳 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)를 제외한 모든 문자를 제거합니다.
     new_id = re.sub('[^-_.a-z0-9]', '', new_id) # 정규표현식 활용
-    print(new_id)
+
     # 3단계 new_id에서 마침표(.)가 2번 이상 연속된 부분을 하나의 마침표(.)로 치환합니다.
     #new_id = re.sub(r"(.)\1+$", ".", new_id)
     #new_id = re.sub(r"^(.)\1+", ".", new_id)
     new_id = re.sub(r'[.]+',".",new_id)
-    print(new_id,'치환체크')
 
     # 4단계 new_id에서 마침표(.)가 처음이나 끝에 위치한다면 제거합니다.
     if new_id.startswith('.'):
