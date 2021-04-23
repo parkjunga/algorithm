@@ -22,7 +22,7 @@ def solution(n):
     for i in range(2, n+1): # 2 ~ n 까지 출력
         if list[i]: # 2 부터 n 까지 일단은 true일때
             primes.append(i) # primes배열에 추가
-            for j in range(2*i,n+1,i): # 이후 2의배수,3의배수 등등 으로 n사이의 값으로 볼때 그 값에 대해서는 False로 바꿈 
+            for j in range(2*i,n+1,i): # 이후 2의배수,3의배수 등등 으로 n사이의 값으로 볼때 그 값에 대해서는 False로 바꿈
                 list[j] = False
     answer = len(primes)
     return answer
