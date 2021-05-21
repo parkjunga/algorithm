@@ -26,6 +26,8 @@ scoville	K	return
 모든 음식의 스코빌 지수가 7 이상이 되었고 이때 섞은 횟수는 2회입니다.
 '''
 import heapq as hq
+
+
 def solution(scoville, K):
     # 이미 생성해준 리스트를 힙 자료형으로 변환
     hq.heapify(scoville)
@@ -35,14 +37,18 @@ def solution(scoville, K):
         if scoville[0] >= K:
             break
         else:
+            # 횟수 추가
             count += 1
-            result = hq.heappop(scoville) + (hq.heappop(scoville) * 2)
-            hq.heappush(scoville,result) # heap배열에 넣는다
-    if len(scoville) == 0:
-        return -1
+            if len(scoville) >= 2 :
+                result = hq.heappop(scoville) + (hq.heappop(scoville) * 2)
+                hq.heappush(scoville,result) # heap배열에 넣는다
+            else:   # 만약 제일작은수와 그 다음 숫자가 없다면
+                return -1
     return count
 
-scoville =[0,1,2]
-K = 7
+scoville =[2,3]
+K = 9
 ans = solution(scoville,K)
 print(ans)
+
+# heap 을 사용해서 제일 작은수를 꺼내고 그다음 수를 가지고 문제해결함
