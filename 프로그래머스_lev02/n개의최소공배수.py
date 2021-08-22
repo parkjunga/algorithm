@@ -17,5 +17,5 @@ def solution(arr):
     return answer
 
 arr = [2,6,8,14]
-
+#test
 print(solution(arr))
