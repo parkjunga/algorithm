@@ -1,21 +1,19 @@
 def solution(arr):
     answer = 1
-    max_arr = 1
-    for i in range(2,len(arr)+1):
-        for j in range(len(arr)):
-            if arr[j] % i == 0:
-                print(arr[j] // i)
-
-                arr[j] = arr[j] // i
-                if max_arr == i:
-                    continue
-                else:
-                    max_arr = i
-                break
-
-    print(arr)
+    tmp = arr[0]
+    for i in range(1,len(arr)):
+        tmp = gcd(tmp,arr[i])
+        print(tmp)
     return answer
 
-arr = [2,6,8,14]
+def gcd(a,b):
+    while b > 0:
+        tmp = b
+        b = a % b
+        a = tmp
+    return a
+
+
+arr = [9, 12, 15]
 #test
 print(solution(arr))

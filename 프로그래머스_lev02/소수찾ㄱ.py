@@ -1,47 +1,40 @@
-import math
 from itertools import permutations
 def solution(numbers):
     answer = 0
-    tmp_list = []
+
+    if numbers == '1':
+        return answer
+
+    if numbers == '2' or numbers == '3':
+        return 1
+
+    # 조합
+    numbers = list(numbers)
+    arr2 = []
+
+    # 기본적으로 값 넣기
     for i in range(len(numbers)):
-        if numbers[i] != '1' and numbers[i] != '0':
-            tmp_list.append(numbers[i])
-    # 순열 조합을 이용한다.
-    n_list = list(permutations(list(numbers),len(list(numbers))))
-    n_list = n_list + tmp_list
-    for i in range(len(n_list)):
-        n_list[i] = ''.join(list(n_list[i]))
-    new_list = list(set(n_list))
+        if int(numbers[i]) > 1:
+            arr2.append(int(numbers[i]))
+    for j in permutations(numbers,len(numbers)):
+        j = int(''.join(j))
+        arr2.append(j)
+    arr2 = set(arr2)
+    arr2 = list(arr2)
 
-    # 가공
-    for i in range(len(new_list)):
-        if new_list[i][0] == '0':
-            new_list[i] = new_list[i][1:]
-    # 마지막
-    sosu = 0
-    for j in range(len(new_list)):
-        sosu = 0
-        new_list[j] = int(new_list[j])
-        if new_list[j] == 2 or new_list[j] == 3: answer += 1
-        if new_list[j] >= 4 :
-            for i in range(2,new_list[j]):
-                if new_list[j] % i == 0:
-                    sosu = 1
-                    break
-            if sosu != 1:
-                answer += 1
+    arr2 = sorted(arr2)
+    for i in range(len(arr2)):
+        ans = test(arr2[i])
+        if ans != '소수아님':
+            answer += 1
     return answer
-# def sosu(num):
-#     arr = [True for i in range(num+1)]
-#
-#     for i in range(2, int(math.sqrt(num)) + 1): # 2부터 제곱근까지 모든 수를 확인해
-#         if arr[i] == True: # i 제외 모든 i배수 지운다
-#             j = 2
-#             while i * j <= num:
-#                 arr[i*j] = False
-#                 j += 1
-#     return [i for i in range(2,num+1) if arr[i]]
 
+def test(num):
+    answer = '';
+    for i in range(2,(num//2)+1):
+        if num%i == 0:
+            answer = '소수아님'
+    return answer
 numbers = '1231'
 print(solution(numbers))
 
