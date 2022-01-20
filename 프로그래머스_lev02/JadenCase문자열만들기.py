@@ -2,6 +2,7 @@
 string.upper()
 string.capitalize()
 string.title()
+
 '''
 def solution(s):
     answer = ''
