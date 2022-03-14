@@ -5,20 +5,21 @@ a = input()
 
 dic = {}
 for i in range(len(a)):
-    if a[i] in dic:
-        dic[a[i]] += 1
+    if a[i].lower() in dic:
+        dic[a[i].lower()] += 1
     else:
         dic[a[i]] = 1
 
-all_value = dic.values()
-max = max(all_value)
-count = 0
-num = []
-for k,v in dic.items():
-    if v == max:
-        num.append(k)
+mx = max(dic.values())
 
-if len(num) >= 2:
-    print('?')
+count = 0
+for k,v in dic.items():
+    if mx == v:
+        count +=1
+
+if count > 1:
+    ans = '?'
 else:
-    print(num[0])
+    ans = max(dic.keys(), key= lambda k : dic[k])
+    ans = ans.upper()
+print(ans)
