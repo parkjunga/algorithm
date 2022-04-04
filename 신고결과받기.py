@@ -1,15 +1,13 @@
 def solution(id_list, report, k):
     new_report = list(set(report))
-    id_dic = {}
-    new_id_dic = {}
-    for i in range(len(id_list)):
-        id_dic[id_list[i]] = 0
-        new_id_dic[id_list[i]] = 0
     nnew_report = []
+    id_dic = {id: 0 for id in id_list}
+    new_id_dic = {id: 0 for id in id_list}
+
     for j in range(len(new_report)):
         nnew_report.append(new_report[j].split(' '))
 
-    for i in range(len((nnew_report))):
+    for i in range(len((new_report))):
          id_dic[nnew_report[i][1]] += 1
 
     for i,v in id_dic.items():
@@ -22,8 +20,8 @@ def solution(id_list, report, k):
     return answer
 
 
-id_list = ["con", "ryan"]
-report = ["ryan con", "ryan con", "ryan con", "ryan con"]
-k = 3
+id_list = ["muzi", "frodo", "apeach", "neo"]
+report = ["muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi"]
+k = 2
 
 print(solution(id_list,report,k))
