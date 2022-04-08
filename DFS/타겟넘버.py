@@ -4,8 +4,9 @@ result 는 tmp값 1로 타겟값까지 되는지 확인
 재귀
 '''
 
-target = 0
+
 answer = 0
+
 
 def DFS(cnt, result, target, numbers):
     n = len(numbers)
