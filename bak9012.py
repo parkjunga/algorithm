@@ -1,20 +1,34 @@
 # 괄호문제 스택이용?
+'''
+6
+(())())
+(((()())()
+(()())((()))
+((()()(()))(((())))()
+()()()()(()()())()
+(()((())()(
+'''
 
-import collections
-def test(s):
+def solution(str):
+    answer = 'NO'
     stack = []
-    ans = 'No'
-    deq = collections.deque(s)
-    for i in range(len(deq)):
-        if deq[i] == '(':
-            stack.append(deq[i])
-        else:
+
+    for i in range(len(str)):
+        if str[i] == '(':
+            stack.append(str[i])
+        elif str[i] == ')':
             if len(stack) > 0:
                 stack.pop()
-        deq.popleft()
-    return ans
+            else:
+                return answer
+                break
+    if len(stack) == 0:
+        answer = 'YES'
+    return answer
+
 n = int(input())
+
 for i in range(n):
-    s = input()
-    ans = test(s)
-    print(ans)
+    print(solution(input()))
+
+
