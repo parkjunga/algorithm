@@ -19,9 +19,9 @@ def solution(n):
     # 나올수 있는 순열 담기
     for i in range(1, len(n_list) + 1):
         # i로 한 이유는 여러개를 받기위해
-        combination = itertools.permutations(n_list, i)
+        per = itertools.permutations(n_list, i)
         # 순열을 리스트화
-        com = list(combination)
+        com = list(per)
         for i in range(len(com)):
             # 모든 조합에서 0과 1을 제외하고 리스트에 담음
             if int(''.join(list(com[i]))) > 1:
